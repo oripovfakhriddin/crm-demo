@@ -1,5 +1,7 @@
-import React, { Fragment, memo } from 'react'
+import { Fragment, memo } from 'react'
 import { Button, Form } from 'react-bootstrap'
+
+import propTypes from "prop-types"
 
 import { productCategory } from '../../constants/const'
 
@@ -50,6 +52,10 @@ const ProductForm = ({validated, product,  handleSubmit, handleProduct, selected
       </Form>
     </Fragment>
   )
+}
+
+ProductForm.propTypes = {
+  validated: propTypes.bool
 }
 
 const MemoProductForm = memo(ProductForm)

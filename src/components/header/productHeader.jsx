@@ -1,5 +1,8 @@
-import React, { Fragment } from 'react'
+import { Fragment, memo } from 'react'
 import { Form, InputGroup } from 'react-bootstrap'
+
+import propTypes from "prop-types"
+
 import { productCategory } from '../../constants/const'
 
 const ProductHeader = ({search, filterCategory, setFilterCategory, setSearch}) => {
@@ -27,4 +30,13 @@ const ProductHeader = ({search, filterCategory, setFilterCategory, setSearch}) =
   )
 }
 
-export default ProductHeader
+ProductHeader.propTypes = {
+  search: propTypes.string, 
+  filterCategory: propTypes.string,
+  setFilterCategory: propTypes.func,
+  setSearch: propTypes.func,
+}
+
+const MemoProductHeader = memo(ProductHeader)
+
+export default MemoProductHeader
