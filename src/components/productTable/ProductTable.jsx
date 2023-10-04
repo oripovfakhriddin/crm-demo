@@ -16,11 +16,11 @@ const ProductTable = ({allProducts, search, filterCategory,  editProduct, delete
         <thead>
           <tr>
             <th>No</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Description</th>
+            <th className='text-center'>Name</th>
+            <th className='text-center'>Category</th>
+            <th className='text-center'>Price($)</th>
+            <th className='text-center'>Quantity</th>
+            <th className='text-center'>Description</th>
             <th className='text-end'>Action</th>
           </tr>
         </thead>
