@@ -14,7 +14,9 @@ const ProductPage = () => {
   const [allProducts, setAllProducts] = useState(JSON.parse(localStorage.getItem("products")) || constProducts);
   const [product, setProduct] = useState(constProduct);
   const [validated, setValidated] = useState(false);
-  const [selected, setSelected] = useState(null)
+  const [selected, setSelected] = useState(null); 
+  const [search, setSearch] = useState("");
+  const [filterCategory, setFilterCategory] = useState("all") 
 
   const handleProduct = (e) => {
     let newProduct = { ...product, [e.target.id]: e.target.value }
@@ -38,7 +40,7 @@ const ProductPage = () => {
         });
       } else {
         newAllProducts = allProducts.map((product)=>{
-          if (product.id = selected) {
+          if (product.id === selected) {
             return newProduct;
           } else {
             return product;
@@ -51,6 +53,7 @@ const ProductPage = () => {
       localStorage.setItem("products", JSON.stringify(newAllProducts))
       setAllProducts(newAllProducts);
       resetProduct();
+      setSelected(null)
     } else {
       setValidated(true);
     }
@@ -91,9 +94,16 @@ const ProductPage = () => {
               
           </Col>
           <Col col="8">
-            <ProductHeader />
+            <ProductHeader 
+              search={search}
+              filterCategory = {filterCategory}
+              setFilterCategory = {setFilterCategory}
+              setSearch={setSearch}
+            />
             <ProductTable 
               allProducts = {allProducts} 
+              search={search}
+              filterCategory={filterCategory}
               editProduct = {editProduct}
               deleteProduct={deleteProduct}/>
           </Col>
