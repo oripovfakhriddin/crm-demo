@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, memo } from 'react'
 import ProductCard from '../productCard/ProductCard'
 import { Table } from 'react-bootstrap'
 
@@ -42,4 +42,6 @@ const ProductTable = ({allProducts, search, filterCategory,  editProduct, delete
   )
 }
 
-export default ProductTable
+const MemoProductTable = memo(ProductTable)
+
+export default MemoProductTable;

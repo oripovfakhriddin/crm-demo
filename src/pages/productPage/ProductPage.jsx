@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import { Fragment, memo, useCallback, useState } from 'react';
 import { v4 } from 'uuid';
 import { Col, Container, Row } from 'react-bootstrap';
 
@@ -18,16 +18,17 @@ const ProductPage = () => {
   const [search, setSearch] = useState("");
   const [filterCategory, setFilterCategory] = useState("all") 
 
-  const handleProduct = (e) => {
+  const handleProduct = useCallback((e) => {
     let newProduct = { ...product, [e.target.id]: e.target.value }
     setProduct(newProduct)
-  }
+  }, [product])
+
 
   const resetProduct = () => {
     setProduct(constProduct)
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = useCallback((event) => {
     event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity()) {
@@ -57,16 +58,16 @@ const ProductPage = () => {
     } else {
       setValidated(true);
     }
-  };
+  }, [allProducts, product, selected])
 
-  const editProduct = (id) => {
+  const editProduct = useCallback((id) => {
     setSelected(id)
     let product =  allProducts.find((product)=> product.id === id)
     setProduct(product)
-  }
+  }, [allProducts])
 
 
-  const deleteProduct = (id) => {
+  const deleteProduct = useCallback((id) => {
     let checkDelete = window.confirm("Are you sure you want to delete this debtor?");
     if (checkDelete) {
       let newAllProducts = allProducts.filter((product)=> product.id !== id)
@@ -76,7 +77,7 @@ const ProductPage = () => {
         autoClose: 1500,
       })
     }
-  }
+  }, [allProducts])
 
 
   return (
@@ -114,4 +115,6 @@ const ProductPage = () => {
   )
 }
 
-export default ProductPage
+const MemoProductPage = memo(ProductPage)
+
+export default MemoProductPage;

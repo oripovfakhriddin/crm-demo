@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, memo, useCallback, useState } from 'react'
 import { Button, Container, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
@@ -7,7 +7,7 @@ const LoginPage = () => {
   const [validated, setValidated] = useState(false);
   const navigate = useNavigate()
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = useCallback((e) =>{
     const form  = e.currentTarget;
     e.preventDefault();
     if (form.checkValidity()) {
@@ -15,7 +15,7 @@ const LoginPage = () => {
     } else {
       setValidated(true)
     }
-  }
+  }, [])
 
 
 
@@ -49,4 +49,6 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage;
+const MemoLoginPage = memo(LoginPage)
+
+export default MemoLoginPage;

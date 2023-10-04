@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, memo } from 'react'
 import { Button, Form } from 'react-bootstrap'
 
 import { productCategory } from '../../constants/const'
@@ -52,4 +52,6 @@ const ProductForm = ({validated, product,  handleSubmit, handleProduct, selected
   )
 }
 
-export default ProductForm;
+const MemoProductForm = memo(ProductForm)
+
+export default MemoProductForm;

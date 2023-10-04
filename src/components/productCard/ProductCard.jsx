@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, memo } from 'react'
 import { Button } from 'react-bootstrap'
 
 const ProductCard = ({id, name, price, category, quantity, description, order, editProduct, deleteProduct}) => {
@@ -20,4 +20,6 @@ const ProductCard = ({id, name, price, category, quantity, description, order, e
   )
 }
 
-export default ProductCard
+const MemoProductCard = memo(ProductCard)
+
+export default MemoProductCard
